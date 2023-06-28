@@ -10,6 +10,30 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
+  <servlet-name>savecontrol</servlet-name>
+  <servlet-class>de.zeroco.album.SaveController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>savecontrol</servlet-name>
+  <url-pattern>/savecontrol</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  <servlet-name>listcontrol</servlet-name>
+  <servlet-class>de.zeroco.album.ListController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>listcontrol</servlet-name>
+  <url-pattern>/listcontrol</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  <servlet-name>deletecontrol</servlet-name>
+  <servlet-class>de.zeroco.album.DeleteController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>deletecontrol</servlet-name>
+  <url-pattern>/deletecontrol</url-pattern>
+  </servlet-mapping>
+  <servlet>
   <servlet-name>save</servlet-name>
   <jsp-file>/SaveController.jsp</jsp-file>
   <multipart-config>
@@ -31,11 +55,43 @@
   <url-pattern>/view</url-pattern>
   </servlet-mapping>
   <servlet>
+  <servlet-name>delete</servlet-name>
+  <jsp-file>/Delete.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>delete</servlet-name>
+  <url-pattern>/delete</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  <servlet-name>deletecontroller</servlet-name>
+  <jsp-file>/DeleteController.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>deletecontroller</servlet-name>
+  <url-pattern>/deletecontroller</url-pattern>
+  </servlet-mapping>
+  <servlet>
   <servlet-name>service</servlet-name>
   <servlet-class>de.zeroco.album.Service</servlet-class>
   </servlet>
   <servlet-mapping>
   <servlet-name>service</servlet-name>
   <url-pattern>/services</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  <servlet-name>update</servlet-name>
+  <servlet-class>de.zeroco.album.UpdateController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>update</servlet-name>
+  <url-pattern>/update</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  <servlet-name>select</servlet-name>
+  <servlet-class>de.zeroco.album.SelectController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>select</servlet-name>
+  <url-pattern>/select</url-pattern>
   </servlet-mapping>
 </web-app>

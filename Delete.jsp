@@ -4,13 +4,13 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Delete</title>
 </head>
 <body>
-<form action="savecontrol" method = "post" enctype="multipart/form-data">
-<h1>Add Photos</h1>
-<label>Insert The Photo</label>
-<input type = "file" name = "photo"></input>
+<h1>Delete The Photo</h1>
+<form action="deletecontrol">
+<label>Image Id : </label>
+<input type = "number" name = "id" value = <%= request.getParameter("id") %>></input>
 <br></br>
 <input type = "submit"></input>
 </form>

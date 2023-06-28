@@ -7,12 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="savecontrol" method = "post" enctype="multipart/form-data">
-<h1>Add Photos</h1>
-<label>Insert The Photo</label>
-<input type = "file" name = "photo"></input>
+<form action="select">
+<h1>Select Photo</h1>
+<label>Photo Id</label>
+<input type = "number" name = "id">
 <br></br>
-<input type = "submit"></input>
+<input type = "submit">
 </form>
 </body>
 </html>

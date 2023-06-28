@@ -1,3 +1,4 @@
+<%@page import="de.zeroco.album.Service"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -7,12 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="savecontrol" method = "post" enctype="multipart/form-data">
-<h1>Add Photos</h1>
-<label>Insert The Photo</label>
-<input type = "file" name = "photo"></input>
-<br></br>
-<input type = "submit"></input>
-</form>
+<%
+if (Service.isImageDeleted(Integer.parseInt(request.getParameter("id")))) {
+	out.println("Delete successfully");
+}
+%>
 </body>
 </html>

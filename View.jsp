@@ -14,12 +14,19 @@
 <tr>
 <%
 List<PhotoAlbum> list = (List<PhotoAlbum>) request.getAttribute("photoAlbum");
-for (PhotoAlbum album : list) 
-{  
-    out.println("<td><image src = " + album.getFilePath() + " alt =" + "Not Found" + "></img></td>");
+int count = 0;
+for (PhotoAlbum album : list) {
+	count++;
+	%>
+	<td><img src="images/<%= album.getFileName() %>" alt= "No Image" width = "300px" heigth = "300px" <td><a href="deletecontrol?id=<%= album.getId() %>">Delete</a>&nbsp&nbsp&nbsp<a href="Update.jsp?id=<%= album.getId() %>">Update</a></td> ></td>
+    <%
+    if (count % 3 == 0) {
+    	%>
+    	</tr>
+    	<%
+    }
 }
 %>
-</tr>
 </table>
 </form>
 </body>

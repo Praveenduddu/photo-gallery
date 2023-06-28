@@ -9,5 +9,8 @@
 <body>
 <h1>Welcome To Gallery</h1>
 <a href="http://localhost:8443/photo-album/AddPhotos.jsp">Add Photos</a>
+<a href="http://localhost:8443/photo-album/listcontrol">List Photos</a>
+<a href="http://localhost:8443/photo-album/Delete.jsp">Delete Photos</a>
+<a href="http://localhost:8443/photo-album/SelectPhoto.jsp">Select Photos</a>
 </body>
 </html>
