@@ -11,6 +11,6 @@ public class SelectController extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("photoAlbum", Service.get(Integer.parseInt(request.getParameter("id"))));
-		request.getRequestDispatcher("/view").forward(request, response);
+		request.getRequestDispatcher("/Update.jsp").forward(request, response);
 	}
 }

@@ -1,3 +1,5 @@
+<%@page import="de.zeroco.album.PhotoAlbum"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -7,12 +9,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Update Details</h1>
+<h1>Image Details</h1>
 <form action="update" method = "post" enctype="multipart/form-data">
-<label>ID</label>
-<input type = "number" name = "id" value = <%= request.getParameter("id") %>></input>
+<%List<PhotoAlbum> list = (List<PhotoAlbum>) request.getAttribute("photoAlbum");%>
+<img src="images/<%= list.get(0).getFileName() %>" alt= "No Image" width = "300px" heigth = "300px" >
 <br></br>
-<label>Update File Path</label>
+<input type = "hidden" name = "id" value = <%= list.get(0).getId() %>></input>
+<label>Replace Image</label>
 <input type = "file" name = "file"></input>
 <br></br>
 <input type = "submit"></input>

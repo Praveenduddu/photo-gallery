@@ -10,7 +10,7 @@ import javax.servlet.http.Part;
 
 public class Service {
 	
-	public static PhotoAlbum getObject(Part part) {
+	public static PhotoAlbum storeUploadedPhotoInAlbum(Part part) {
 		String fileName = "C:\\Users\\91834\\Desktop\\Projects\\photo-album\\WebContent\\images\\" + part.getSubmittedFileName();
 		try {
 			part.write(fileName);
@@ -20,8 +20,8 @@ public class Service {
 		return new PhotoAlbum(fileName, part.getSubmittedFileName());
 	}
 	
-	public static PhotoAlbum getObject(Part part, int id) {
-		PhotoAlbum album = getObject(part);
+	public static PhotoAlbum storeUploadedPhotoInAlbum(Part part, int id) {
+		PhotoAlbum album = storeUploadedPhotoInAlbum(part);
 		album.setId(id);
 		return album;
 	}
@@ -41,11 +41,11 @@ public class Service {
 	}
 	
 	public static int getGeneratedKey(Part filePart) {
-		return Dao.getGeneratedKey(Service.getObject(filePart));
+		return Dao.getGeneratedKey(Service.storeUploadedPhotoInAlbum(filePart));
 	}
 	
 	public static int update(Part part, int id) {
-		return Dao.update(Service.getObject(part, id));
+		return Dao.update(Service.storeUploadedPhotoInAlbum(part, id));
 	}
 	
 	public static List<PhotoAlbum> get(int id) {
@@ -66,5 +66,5 @@ public class Service {
 		}
 		return false;
 	}
-	
+
 }
