@@ -19,5 +19,4 @@ public class ListController extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
 }

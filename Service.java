@@ -10,18 +10,18 @@ import javax.servlet.http.Part;
 
 public class Service {
 	
-	public static PhotoAlbum storeUploadedPhotoInAlbum(Part part) {
-		String fileName = "C:\\Users\\91834\\Desktop\\Projects\\photo-album\\WebContent\\images\\" + part.getSubmittedFileName();
+	public static PhotoAlbum storeUploadedPhotoInAlbum(Part part, String directoryPath) {
+		String filePath = directoryPath + part.getSubmittedFileName();
 		try {
-			part.write(fileName);
+			part.write(filePath);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return new PhotoAlbum(fileName, part.getSubmittedFileName());
+		return new PhotoAlbum(filePath, part.getSubmittedFileName());
 	}
 	
-	public static PhotoAlbum storeUploadedPhotoInAlbum(Part part, int id) {
-		PhotoAlbum album = storeUploadedPhotoInAlbum(part);
+	public static PhotoAlbum storeUploadedPhotoInAlbum(Part part, int id, String directoryPath) {
+		PhotoAlbum album = storeUploadedPhotoInAlbum(part, directoryPath);
 		album.setId(id);
 		return album;
 	}
@@ -40,24 +40,24 @@ public class Service {
 		return Dao.list();
 	}
 	
-	public static int getGeneratedKey(Part filePart) {
-		return Dao.getGeneratedKey(Service.storeUploadedPhotoInAlbum(filePart));
+	public static int getGeneratedKey(PhotoAlbum photoAlbum) {
+		return Dao.getGeneratedKey(photoAlbum);
 	}
 	
-	public static int update(Part part, int id) {
-		return Dao.update(Service.storeUploadedPhotoInAlbum(part, id));
+	public static int update(PhotoAlbum photoAlbum) {
+		return Dao.update(photoAlbum);
 	}
 	
-	public static List<PhotoAlbum> get(int id) {
+	public static PhotoAlbum get(int id) {
 		return Dao.get(id);
 	}
 	
-	public static List<PhotoAlbum> get(String column, Object value) {
+	public static PhotoAlbum get(String column, Object value) {
 		return Dao.get(column, value);
 	}
 	
 	public static boolean isImageDeleted(int id) {
-		File file = new File(Dao.get(id).get(0).getFilePath());
+		File file = new File(Dao.get(id).getFilePath());
 		if (file.exists()) {
 			if (file.delete()) {
 				Dao.delete(id);

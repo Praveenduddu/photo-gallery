@@ -27,11 +27,11 @@ public class Dao {
 	}
 	
 	public static List<PhotoAlbum> list() {
-		List<PhotoAlbum> users = null;
+		List<PhotoAlbum> photos = null;
 		Connection connection = Utility.getConnection(DBUtil.URL, DBUtil.USER, DBUtil.PASSWORD, SCHEMA);
-		users = getListOfObjectFromListOfMaps(DBUtil.list(SCHEMA, TABLE_NAME, Arrays.asList(), connection));
+		photos = getListOfObjectFromListOfMaps(DBUtil.list(SCHEMA, TABLE_NAME, Arrays.asList(), connection));
 		Utility.closeConnection(connection);
-		return users;
+		return photos;
 	}
 	
 	public static int delete(int id) {
@@ -42,15 +42,15 @@ public class Dao {
 		return numOfRowsUpdate;
 	}
 	
-	public static List<PhotoAlbum> get(String column, Object value) {
-		List<PhotoAlbum> users = new ArrayList<>();
+	public static PhotoAlbum get(String column, Object value) {
+		PhotoAlbum photos = null;
 		Connection connection = Utility.getConnection(DBUtil.URL, DBUtil.USER, DBUtil.PASSWORD, SCHEMA);
-		users = getListOfObjectFromListOfMaps(DBUtil.get(SCHEMA, TABLE_NAME, Arrays.asList(), column, ASSIGN_OPERATOR, value, connection));
+		photos = getObjectFromListOfMaps(DBUtil.gets(SCHEMA, TABLE_NAME, Arrays.asList(), column, ASSIGN_OPERATOR, value, connection));
 		Utility.closeConnection(connection);
-		return users;
+		return photos;
 	}
 	
-	public static List<PhotoAlbum> get(int id) {
+	public static PhotoAlbum get(int id) {
 		return get(CONDITION_COLUMN, id);
 	}
 	
@@ -64,11 +64,11 @@ public class Dao {
 	}
 	
 	public static List<PhotoAlbum> getListOfObjectFromListOfMaps(List<Map<String, Object>> list) {
-		List<PhotoAlbum> users = new ArrayList<>();
+		List<PhotoAlbum> photos = new ArrayList<>();
 		for (Map<String, Object> map : list) {
-			users.add(new PhotoAlbum((int) map.get(CONDITION_COLUMN),(String) map.get(COLUMNS[0]), (String) map.get(COLUMNS[1])));
+			photos.add(new PhotoAlbum((int) map.get(CONDITION_COLUMN),(String) map.get(COLUMNS[0]), (String) map.get(COLUMNS[1])));
 		}
-		return users;
+		return photos;
 	}
 	
 	public static List<Object> getListFromObject(PhotoAlbum photoAlbum) {
@@ -76,6 +76,13 @@ public class Dao {
 		values.add(photoAlbum.getFilePath());
 		values.add(photoAlbum.getFileName());
 		return values;
+	}
+	
+	public static PhotoAlbum getObjectFromListOfMaps(List<Map<String, Object>> list) {
+		for (Map<String, Object> map : list) {
+			return new PhotoAlbum((int) map.get(CONDITION_COLUMN),(String) map.get(COLUMNS[0]), (String) map.get(COLUMNS[1]));
+		}
+		return null;
 	}
 	
 }

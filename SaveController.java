@@ -18,10 +18,11 @@ public class SaveController extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) {
 		Part filePart;
 		try {
+			String directoryPath = getServletContext().getRealPath("/Images/");
 			PrintWriter out = response.getWriter();
 			filePart = request.getPart("photo");
-			if (Service.get("file_name", filePart.getSubmittedFileName()).isEmpty()) {
-				if (Service.getGeneratedKey(filePart) > 0) {
+			if (Service.get("file_name", filePart.getSubmittedFileName()) == null) {
+				if (Service.getGeneratedKey(Service.storeUploadedPhotoInAlbum(filePart, directoryPath)) > 0) {
 					request.getRequestDispatcher("listcontrol").forward(request, response);
 				}
 			} else {

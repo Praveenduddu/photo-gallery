@@ -11,10 +11,10 @@
 <body>
 <h1>Image Details</h1>
 <form action="update" method = "post" enctype="multipart/form-data">
-<%List<PhotoAlbum> list = (List<PhotoAlbum>) request.getAttribute("photoAlbum");%>
-<img src="images/<%= list.get(0).getFileName() %>" alt= "No Image" width = "300px" heigth = "300px" >
+<%PhotoAlbum album = (PhotoAlbum) request.getAttribute("photoAlbum");%>
+<img src="Images/<%= album.getFileName() %>" alt= "No Image" width = "300px" heigth = "300px" >
 <br></br>
-<input type = "hidden" name = "id" value = <%= list.get(0).getId() %>></input>
+<input type = "hidden" name = "id" value = <%= album.getId() %>></input>
 <label>Replace Image</label>
 <input type = "file" name = "file"></input>
 <br></br>

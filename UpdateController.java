@@ -18,11 +18,12 @@ public class UpdateController extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) {
 		Part filePart;
 		try {
+			String directoryPath = getServletContext().getRealPath("/Images/");
 			filePart = request.getPart("file");
 			PrintWriter out = response.getWriter();
 			int id = Integer.parseInt(request.getParameter("id"));
-			if (Service.get("file_name", filePart.getSubmittedFileName()).isEmpty()) {
-				if (Service.update(filePart, id) > 0) {
+			if (Service.get("file_name", filePart.getSubmittedFileName()) == null) {
+				if (Service.update(Service.storeUploadedPhotoInAlbum(filePart, id, directoryPath)) > 0) {
 					request.getRequestDispatcher("listcontrol").forward(request, response);
 				}
 			} else {

@@ -11,7 +11,8 @@
 <body>
 <%
 Part filePart = request.getPart("photo");
-out.println(Service.getGeneratedKey(filePart));
+String uploadDirectory = getServletContext().getRealPath("/images/");
+out.println(Service.getGeneratedKey(Service.storeUploadedPhotoInAlbum(filePart, uploadDirectory)));
 %>
 </body>
 </html>

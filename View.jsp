@@ -18,7 +18,7 @@ int count = 0;
 for (PhotoAlbum album : list) {
 	count++;
 	%>
-	<td><img src="images/<%= album.getFileName() %>" alt= "No Image" width = "300px" heigth = "300px" <td><a href="deletecontrol?id=<%= album.getId() %>">Delete</a>&nbsp&nbsp&nbsp<a href="select?id=<%= album.getId() %>">Edit</a></td> ></td>
+	<td><img src="Images/<%= album.getFileName() %>" alt= "No Image" width = "300px" heigth = "300px" <td><a href="deletecontrol?id=<%= album.getId() %>">Delete</a>&nbsp&nbsp&nbsp<a href="select?id=<%= album.getId() %>">Edit</a></td> ></td>
     <%
     if (count % 3 == 0) {
     	%>
